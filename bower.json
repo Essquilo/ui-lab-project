@@ -1,0 +1,26 @@
+{
+  "name": "shop_project",
+  "authors": [
+    "Ivan Prymak <esquilo1994@gmail.comk>"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "^1.6.3",
+    "angular-route": "^1.6.3",
+    "angular-cookies": "^1.6.3",
+    "ng-dialog": "ngDialog#^1.0.1",
+    "bootstrap": "^3.3.7",
+    "underscore": "^1.8.3"
+  }
+}

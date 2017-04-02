@@ -37,6 +37,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
+    'compressor',
+    'shop'
 ]
 
 MIDDLEWARE = [
@@ -49,12 +52,12 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'shop.urls'
+ROOT_URLCONF = 'main.urls'
 
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -66,8 +69,29 @@ TEMPLATES = [
         },
     },
 ]
+STATIC_URL = '/static/'
+STATIC_ROOT = 'staticfiles'
 
-WSGI_APPLICATION = 'shop.wsgi.application'
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'dist/static'),
+    os.path.join(BASE_DIR, 'static'),
+)
+
+STATICFILES_FINDERS = (
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    'compressor.finders.CompressorFinder',
+)
+
+COMPRESS_ENABLED = os.environ.get('COMPRESS_ENABLED', False)
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.SessionAuthentication',
+    )
+}
+
+WSGI_APPLICATION = 'main.wsgi.application'
 
 
 # Database
@@ -112,9 +136,3 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
-
-
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/1.10/howto/static-files/
-
-STATIC_URL = '/static/'

@@ -16,6 +16,7 @@ class Designation(models.Model):
 class ShopItem(models.Model):
     name = models.CharField(max_length=200)
     cost = models.PositiveIntegerField()
+    img = models.ImageField()
     packaging = models.ForeignKey(Packaging, models.CASCADE)
-    designation = models.ForeignKey(Designation, models.CASCADE)
     manufacturer = models.ForeignKey(Manufacturer, models.CASCADE)
+    designation = models.ForeignKey(Designation, models.CASCADE)

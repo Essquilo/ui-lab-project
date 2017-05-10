@@ -1,31 +1,63 @@
 {% extends 'base.html' %}
 {% block content %}
-    <div ng-app="authentication" class="col-md-4 col-md-offset-4">
-        <div class="well" ng-controller="RegisterController">
-            <h1>[[ name ]]</h1>
-            <form role="form">
+    <div ng-app="app" ng-controller="RegisterController">
+    <nav class="navbar navbar-inverse bg-inverse navbar-static-top">
+      <a class="navbar-brand" href="#">Chemicals shop</a>
+    </nav>
+        <form role="form" class="form-horizontal col-sm-6 col-sm-offset-2">
+            <div class="vertical-group">
                 <div class="form-group">
-                    <label for="register__email">Email</label>
-                    <input type="email" class="form-control" id="register__email" ng-value="name"
-                           placeholder="ex. john@notgoogle.com"/>
+                    <label for="inputEmail" class="col-md-4 control-label">Email</label>
+                    <div class="col-md-8">
+                        <input type="email" id="inputEmail" class="form-control" ng-model="user.email"
+                               placeholder="Email"/>
+                    </div>
+                </div>
+                <div class="form-group" ng-show="emailTaken">
+                    <div class="col-md-offset-4 col-md-8">
+                        <div class="alert alert-warning fade in" role="alert" id="email_alert">
+                            <button type="button" class="close" aria-label="Close" ng-click="dismissAlert('emailTaken')">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            <strong>Snap!</strong> This email is already taken.
+                        </div>
+                    </div>
                 </div>
 
                 <div class="form-group">
-                    <label for="register__username">Username</label>
-                    <input type="text" class="form-control" id="register__username" ng-model="vm.username"
-                           placeholder="ex. john"/>
+                    <label for="inputFirstName" class="col-md-4 control-label">First name</label>
+                    <div class="col-md-8">
+                        <input type="tel" id="inputFirstName" class="form-control" ng-model="user.first_name"
+                               placeholder="First name"/>
+                    </div>
                 </div>
-
                 <div class="form-group">
-                    <label for="register__password">Password</label>
-                    <input type="password" class="form-control" id="register__password" ng-model="vm.password"
-                           placeholder="ex. thisisnotgoogleplus"/>
+                    <label for="inputLastName" class="col-md-4 control-label">Last name</label>
+                    <div class="col-md-8">
+                        <input type="text" id="inputLastName" class="form-control" ng-model="user.last_name"
+                               placeholder="Last name"/>
+                    </div>
                 </div>
-
-                <div class="form-group">
-                    <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+            <div class="form-group">
+                <label for="inputPassword" class="col-md-4 control-label">Password</label>
+                <div class="col-md-8">
+                    <input type="password" id="inputPassword" class="form-control" ng-model="user.password"
+                           placeholder="Password"/>
                 </div>
-            </form>
-        </div>
+            </div>
+            <div class="form-group">
+                <label for="inputConfirmPassword" class="col-md-4 control-label">Confirm Password</label>
+                <div class="col-md-8">
+                    <input type="password" id="inputConfirmPassword" class="form-control"
+                           ng-model="user.confirm_password" placeholder="Confirm password"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-offset-4 col-md-8">
+                    <button type="submit" class="btn btn-primary" ng-click="register(user)">Register</button>
+                </div>
+            </div>
+        </form>
     </div>
 {% endblock %}

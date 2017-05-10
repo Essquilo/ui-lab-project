@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div ng-app="app" ng-controller="ShopController">
+        <nav class="navbar navbar-inverse bg-inverse navbar-static-top">
+            <a class="navbar-brand" href="#">Chemicals shop</a>
+        </nav>
+        <div class="container-fluid  vertical-group">
+            <div class="input-group col-md-4" ng-repeat="filter in filters">
+                <div class="input-group-btn">
+                    <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">
+                        [[filter.field]]
+                    </button>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" ng-click="name_filter($index)" href="#">Name</a>
+                        <a class="dropdown-item" ng-click="max_cost_filter($index)" href="#">Max cost</a>
+                        <a class="dropdown-item" ng-click="min_cost_filter($index)" href="#">Min cost</a>
+                        <a class="dropdown-item" ng-click="packaging_filter($index)" href="#">Packaging</a>
+                        <a class="dropdown-item" ng-click="designation_filter($index)" href="#">Designation</a>
+                    </div>
+                </div>
+                <input type="text" class="form-control" aria-label="Text input with dropdown button">
+                 <div class="input-group-btn">
+                <button ng-class="$last ? 'btn btn-success' : 'btn btn-danger'"
+                        ng-click="$last? add_filter() : remove_filter($index)">
+                    <span ng-class="$last ? 'fa fa-plus' : 'fa fa-close'"></span>
+                </button>
+                 </div>
+            </div>
+        </div>
+        <div class="container-fluid vertical-group">
+            <div class="card-deck">
+                <div class="card">
+                    <img class="card-img-top" src="..." alt="Card image cap">
+                    <div class="card-block" ng-repeat="item in shop_items">
+                        <h4 class="card-title">[[item.name]]</h4>
+                        <p class="card-text">[[item.description]]</p>
+                        <a href="#" class="btn btn-primary">Add to cart</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div ng-app="app" ng-controller="LoginController">
+    <nav class="navbar navbar-inverse bg-inverse navbar-static-top">
+      <a class="navbar-brand" href="#">Chemicals Shop</a>
+    </nav>
+        <form role="form" class="form-horizontal col-sm-6 col-sm-offset-2">
+            <div class="vertical-group">
+                <div class="form-group">
+                    <label for="inputEmail" class="col-md-4 control-label">Email</label>
+                    <div class="col-md-8">
+                        <input type="email" id="inputEmail" class="form-control" ng-model="user.username"
+                               placeholder="Email"/>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="inputPassword" class="col-md-4 control-label">Password</label>
+                    <div class="col-md-8">
+                        <input type="password" id="inputPassword" class="form-control" ng-model="user.password"
+                               placeholder="Password"/>
+                    </div>
+                </div>
+                <div class="form-group" ng-show="incorrectPair">
+                    <div class="col-md-offset-4 col-md-8">
+                        <div class="alert alert-warning fade in" role="alert" id="email_alert">
+                            <button type="button" class="close" aria-label="Close"
+                                    ng-click="dismissAlert('incorrectPair')">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            <strong>Snap!</strong> This email and password don't match.
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <span class="col-md-offset-4 col-md-8">
+                            <h3>
+                            <button type="submit" class="btn btn-success col-md-2" ng-click="login(user)">
+                                <b>Login</b>
+                            </button>
+                                <span class="pull-right">
+                                <small>Do not have an account?</small>
+                            <a href="/register" class="btn btn-primary">
+                                <b>Register</b>
+                            </a>
+                                    </span>
+                            </h3>
+                    </span>
+                </div>
+            </div>
+        </form>
+    </div>
+{% endblock %}

@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 
 from rest_framework import serializers
 
-from shop.models import ShopItem, Packaging, Manufacturer, Designation
+from shop.models import ShopItem, Packaging, Manufacturer, Designation, Profile
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -25,6 +25,7 @@ class UserSerializer(serializers.ModelSerializer):
             last_name=validated_data['last_name']
         )
         user.set_password(validated_data['password'])
+        user.profile = Profile()
         user.save()
 
         return user
@@ -79,4 +80,10 @@ class ShopItemSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = ShopItem
-        fields = ('id', 'name', 'cost')
+        fields = ('id', 'packaging', 'manufacturer', 'designation', 'name', 'cost', 'img')
+
+
+class CartSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ShopItem
+        fields = ('id', )

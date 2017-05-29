@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div ng-app="app" ng-controller="CartController">
+        <nav class="navbar navbar-static-top">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">Chemicals shop</a>
+            </div>
+            <div class="container">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <button class="btn navbar-btn btn-primary-flat" ng-click="toCart()"><span
+                                class="fa fa-2x fa-shopping-cart"></span>
+                        </button>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <div class="vertical-group-sm">
+            <div class="container-fluid">
+                <div class="col-md-3" ng-repeat="item in cart_items">
+                    <div class="card">
+                        <div class="card-img">
+                            <img class="img-responsive" ng-src="[[item.img]]" alt="Card image cap">
+                        </div>
+                        <div class="card-content">
+                            <h4 class="card-title">[[item.name]]</h4>
+                            <p class="card-text">[[item.description]]</p>
+                            <div class="text-left">
+                            </div>
+                            <div class="text-right">
+                                <span class="pull-left text-left">[[styleCost(item.cost)]]$</span>
+                                <button ng-click="removeFromCart(item.id)" class="btn-accent-flat text-right">Remove from cart
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

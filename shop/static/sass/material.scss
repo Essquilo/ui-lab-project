@@ -1,0 +1,328 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500');
+// Core variables and mixins
+@import "../../../static/bower_components/bootstrap-sass/assets/stylesheets/bootstrap/variables";
+@import "../../../static/bower_components/bootstrap-sass/assets/stylesheets/bootstrap/mixins";
+
+$roboto: 'Roboto', sans-serif;
+
+$dark-primary-color: #00796B;
+$primary-color: #009688;
+$light-primary-color: #B2DFDB;
+$accent-color: #FFC107;
+$primary-text: #212121;
+$control-text: #FFFFFF;
+
+$shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+$elevated-shadow: 0 5px 11px 0 rgba(0, 0, 0, 0.18), 0 4px 15px 0 rgba(0, 0, 0, 0.15);
+
+$btn-primary-bg: $primary-color;
+$btn-accent-bg: $accent-color;
+$btn-default-border: transparent;
+$btn-success-border: transparent;
+$btn-primary-border: transparent;
+$btn-warning-border: transparent;
+$btn-danger-border: transparent;
+$btn-secondary-border: transparent;
+$btn-secondary-color: transparent;
+
+@mixin button-flat-variant($color) {
+  color: $color;
+  background-color: transparent;
+  border-color: transparent;
+  &:focus,
+  &.focus {
+    color: $color;
+  }
+  &:hover {
+    color: $color;
+  }
+  &:active,
+  &.active,
+  .open > &.dropdown-toggle {
+    color: $color;
+
+    &:hover,
+    &:focus,
+    &.focus {
+      color: $color;
+      outline: 0;
+    }
+  }
+}
+
+@mixin button-variant($color, $background, $border) {
+  color: $color;
+  background-color: $background;
+  &:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: -1;
+    box-shadow: $shadow;
+  }
+  &:focus,
+  &.focus {
+    color: $color;
+    background-color: lighten($background, 10%);
+  }
+  &:hover {
+    color: $color;
+    background-color: lighten($background, 10%);
+  }
+  &:hover:after {
+    box-shadow: $elevated-shadow;
+  }
+  &:active,
+  &.active,
+  .open > &.dropdown-toggle {
+    color: $color;
+    background-color: lighten($background, 10%);
+    &:hover,
+    &:focus,
+    &.focus {
+      color: $color;
+      background-color: lighten($background, 17%);
+      outline: 0;
+    }
+  }
+}
+
+// Reset and dependencies
+@import "../../../static/bower_components/bootstrap-sass/assets/stylesheets/bootstrap/normalize";
+@import "../../../static/bower_components/bootstrap-sass/assets/stylesheets/bootstrap/print";
+@import "../../../static/bower_components/bootstrap-sass/assets/stylesheets/bootstrap/glyphicons";
+
+// Core CSS
+@import "../../../static/bower_components/bootstrap-sass/assets/stylesheets/bootstrap/scaffolding";
+@import "../../../static/bower_components/bootstrap-sass/assets/stylesheets/bootstrap/type";
+@import "../../../static/bower_components/bootstrap-sass/assets/stylesheets/bootstrap/code";
+@import "../../../static/bower_components/bootstrap-sass/assets/stylesheets/bootstrap/grid";
+@import "../../../static/bower_components/bootstrap-sass/assets/stylesheets/bootstrap/tables";
+@import "../../../static/bower_components/bootstrap-sass/assets/stylesheets/bootstrap/forms";
+@import "../../../static/bower_components/bootstrap-sass/assets/stylesheets/bootstrap/buttons";
+
+// Components
+@import "../../../static/bower_components/bootstrap-sass/assets/stylesheets/bootstrap/component-animations";
+@import "../../../static/bower_components/bootstrap-sass/assets/stylesheets/bootstrap/dropdowns";
+@import "../../../static/bower_components/bootstrap-sass/assets/stylesheets/bootstrap/button-groups";
+@import "../../../static/bower_components/bootstrap-sass/assets/stylesheets/bootstrap/input-groups";
+@import "../../../static/bower_components/bootstrap-sass/assets/stylesheets/bootstrap/navs";
+@import "../../../static/bower_components/bootstrap-sass/assets/stylesheets/bootstrap/navbar";
+@import "../../../static/bower_components/bootstrap-sass/assets/stylesheets/bootstrap/breadcrumbs";
+@import "../../../static/bower_components/bootstrap-sass/assets/stylesheets/bootstrap/pagination";
+@import "../../../static/bower_components/bootstrap-sass/assets/stylesheets/bootstrap/pager";
+@import "../../../static/bower_components/bootstrap-sass/assets/stylesheets/bootstrap/labels";
+@import "../../../static/bower_components/bootstrap-sass/assets/stylesheets/bootstrap/badges";
+@import "../../../static/bower_components/bootstrap-sass/assets/stylesheets/bootstrap/jumbotron";
+@import "../../../static/bower_components/bootstrap-sass/assets/stylesheets/bootstrap/thumbnails";
+@import "../../../static/bower_components/bootstrap-sass/assets/stylesheets/bootstrap/alerts";
+@import "../../../static/bower_components/bootstrap-sass/assets/stylesheets/bootstrap/progress-bars";
+@import "../../../static/bower_components/bootstrap-sass/assets/stylesheets/bootstrap/media";
+@import "../../../static/bower_components/bootstrap-sass/assets/stylesheets/bootstrap/list-group";
+@import "../../../static/bower_components/bootstrap-sass/assets/stylesheets/bootstrap/panels";
+@import "../../../static/bower_components/bootstrap-sass/assets/stylesheets/bootstrap/responsive-embed";
+@import "../../../static/bower_components/bootstrap-sass/assets/stylesheets/bootstrap/wells";
+@import "../../../static/bower_components/bootstrap-sass/assets/stylesheets/bootstrap/close";
+
+// Components w/ JavaScript
+@import "../../../static/bower_components/bootstrap-sass/assets/stylesheets/bootstrap/modals";
+@import "../../../static/bower_components/bootstrap-sass/assets/stylesheets/bootstrap/tooltip";
+@import "../../../static/bower_components/bootstrap-sass/assets/stylesheets/bootstrap/popovers";
+@import "../../../static/bower_components/bootstrap-sass/assets/stylesheets/bootstrap/carousel";
+
+// Utility classes
+@import "../../../static/bower_components/bootstrap-sass/assets/stylesheets/bootstrap/utilities";
+@import "../../../static/bower_components/bootstrap-sass/assets/stylesheets/bootstrap/responsive-utilities";
+
+body {
+  font-family: $roboto;
+  font-weight: 500;
+  background-color: #f1f1f1;
+}
+
+h1, p {
+  text-align: center;
+}
+
+/*navbar*/
+.navbar {
+  background-color: $primary-color;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .14), 0 3px 1px -2px rgba(0, 0, 0, .2), 0 1px 5px 0 rgba(0, 0, 0, .12);
+}
+
+.navbar-brand {
+  color: $control-text
+}
+
+/*box*/
+.box {
+  position: relative;
+  background-color: #fff;
+  min-height: 300px;
+  border-radius: 2px;
+}
+
+.box:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  box-shadow: $shadow;
+}
+
+.input-group-btn {
+  > .btn {
+    z-index: auto;
+    &:hover,
+    &:focus,
+    &:active {
+      z-index: auto;
+    }
+  }
+
+}
+
+.input-group-btn:last-child > .btn, .input-group-btn:last-child > .btn-group {
+  z-index: auto;
+  margin-left: -1px;
+  &:hover, :active, :focus, .focus {
+    z-index: auto;
+  }
+}
+
+button:focus {
+  outline: none !important;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+  border: none;
+}
+
+.form-control {
+  z-index: auto;
+  box-shadow: none;
+  &:focus, .focus {
+    box-shadow: none;
+  }
+}
+
+.material-text-input {
+  border: none;
+  &:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: -1;
+    box-shadow: $shadow;
+  }
+}
+
+.material-text-input.form-control {
+  padding: 0;
+}
+
+.material-text-input-focused:before {
+  box-shadow: $elevated-shadow;
+  z-index: 1;
+}
+
+.btn {
+  text-transform: uppercase;
+  border-radius: 2px;
+  border: 1px solid transparent;
+  transition: .2s ease-out;
+  position: relative;
+  z-index: auto;
+}
+
+.btn-accent {
+  @include button-variant($control-text, $accent-color, transparent);
+}
+
+.btn-accent-flat {
+  @include button-flat-variant($accent-color);
+  box-shadow: none;
+  text-transform: uppercase;
+  padding: 0;
+}
+
+.btn-primary-flat {
+  @include button-flat-variant($control-text);
+  box-shadow: none;
+  text-transform: uppercase;
+  padding: 0;
+}
+
+.card {
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+}
+
+.card {
+  margin-top: 10px;
+  box-sizing: border-box;
+  border-radius: 2px;
+  background-clip: padding-box;
+}
+
+.card span.card-title {
+  color: #fff;
+  font-size: 24px;
+  font-weight: 300;
+  text-transform: uppercase;
+}
+
+.card .card-image {
+  position: relative;
+  overflow: hidden;
+}
+
+.card .card-image img {
+  border-radius: 2px 2px 0 0;
+  background-clip: padding-box;
+  position: relative;
+  z-index: -1;
+}
+
+.card .card-image span.card-title {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  padding: 16px;
+}
+
+.card .card-content {
+  padding: 16px;
+  border-radius: 0 0 2px 2px;
+  background-clip: padding-box;
+  box-sizing: border-box;
+}
+
+.card .card-content p {
+  margin: 0;
+  color: inherit;
+}
+
+.card .card-content span.card-title {
+  line-height: 48px;
+}
+
+.card .card-action {
+  border-top: 1px solid rgba(160, 160, 160, 0.2);
+  padding: 16px;
+}
+
+.card .card-action a {
+  margin-right: 16px;
+  transition: color 0.3s ease;
+  text-transform: uppercase;
+}

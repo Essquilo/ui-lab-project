@@ -1,10 +1,20 @@
 {% load compress %}
 {% load staticfiles %}
 {% compress css %}
-    <link rel="stylesheet" href="{% static 'bower_components/bootstrap/dist/css/bootstrap.css' %}"/>
     <link rel="stylesheet" href="{% static 'bower_components/components-font-awesome/css/font-awesome.min.css' %}"/>
-    <style type="text/css">.vertical-group {
-        margin-bottom: 40px;
-        margin-top: 40px;
-    }</style>
+    <link rel="stylesheet" href="{% static 'css/material.css' %}"/>
+    <style type="text/css">
+        .vertical-group {
+            margin-bottom: 40px;
+            margin-top: 40px;
+        }
+        .vertical-group-sm {
+            margin-bottom: 10px;
+            margin-top: 10px;
+        }
+        .input-group {
+            margin-bottom: 10px;
+            margin-top: 10px;
+        }
+    </style>
 {% endcompress %}

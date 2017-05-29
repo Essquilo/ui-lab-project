@@ -1,41 +1,67 @@
 {% extends 'base.html' %}
 {% block content %}
     <div ng-app="app" ng-controller="ShopController">
-        <nav class="navbar navbar-inverse bg-inverse navbar-static-top">
-            <a class="navbar-brand" href="#">Chemicals shop</a>
+        <nav class="navbar navbar-static-top">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">Chemicals shop</a>
+            </div>
+            <div class="container">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <button class="btn navbar-btn btn-primary-flat" ng-click="toCart()"><span
+                                class="fa fa-2x fa-shopping-cart"></span>
+                        </button>
+                    </li>
+                </ul>
+            </div>
         </nav>
-        <div class="container-fluid  vertical-group">
-            <div class="input-group col-md-4" ng-repeat="filter in filters">
-                <div class="input-group-btn">
-                    <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown"
-                            aria-haspopup="true" aria-expanded="false">
-                        [[filter.field]]
-                    </button>
-                    <div class="dropdown-menu">
-                        <a class="dropdown-item" ng-click="name_filter($index)" href="#">Name</a>
-                        <a class="dropdown-item" ng-click="max_cost_filter($index)" href="#">Max cost</a>
-                        <a class="dropdown-item" ng-click="min_cost_filter($index)" href="#">Min cost</a>
-                        <a class="dropdown-item" ng-click="packaging_filter($index)" href="#">Packaging</a>
-                        <a class="dropdown-item" ng-click="designation_filter($index)" href="#">Designation</a>
+        <div class="vertical-group-sm">
+            <div class="container-fluid">
+                <div class="col-md-4" ng-repeat="filter in filters">
+                    <div class="input-group">
+                        <div class="input-group-btn">
+                            <button type="button" class="btn btn-accent dropdown-toggle" data-toggle="dropdown"
+                                    aria-haspopup="true" aria-expanded="false">
+                                [[filter.name]] <span class="fa fa-caret-down"></span>
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li><a ng-click="name_filter($index)" href="#">Name</a></li>
+                                <li><a ng-click="max_cost_filter($index)" href="#">Max cost</a></li>
+                                <li><a ng-click="min_cost_filter($index)" href="#">Min cost</a></li>
+                                <li><a ng-click="packaging_filter($index)" href="#">Packaging</a></li>
+                                <li><a ng-click="designation_filter($index)" href="#">Designation</a></li>
+                            </ul>
+                        </div>
+                        <div class="material-text-input form-control" >
+                        <input type="text" class="form-control" cost-field="isCost(filter.field)"
+                               ng-model="filter.value"/>
+                        </div>
+                        <div class="input-group-btn">
+                            <button ng-class="$last ? 'btn btn-accent' : 'btn btn-danger'"
+                                    ng-click="$last? add_filter() : remove_filter($index)">
+                                <span ng-class="$last ? 'fa fa-plus' : 'fa fa-close'"></span>
+                            </button>
+                        </div>
                     </div>
                 </div>
-                <input type="text" class="form-control" aria-label="Text input with dropdown button">
-                 <div class="input-group-btn">
-                <button ng-class="$last ? 'btn btn-success' : 'btn btn-danger'"
-                        ng-click="$last? add_filter() : remove_filter($index)">
-                    <span ng-class="$last ? 'fa fa-plus' : 'fa fa-close'"></span>
-                </button>
-                 </div>
             </div>
-        </div>
-        <div class="container-fluid vertical-group">
-            <div class="card-deck">
-                <div class="card">
-                    <img class="card-img-top" src="..." alt="Card image cap">
-                    <div class="card-block" ng-repeat="item in shop_items">
-                        <h4 class="card-title">[[item.name]]</h4>
-                        <p class="card-text">[[item.description]]</p>
-                        <a href="#" class="btn btn-primary">Add to cart</a>
+            <div class="container-fluid">
+                <div class="col-md-3" ng-repeat="item in shop_items">
+                    <div class="card">
+                        <div class="card-img">
+                            <img class="img-responsive" ng-src="[[item.img]]" alt="Card image cap">
+                        </div>
+                        <div class="card-content">
+                            <h4 class="card-title">[[item.name]]</h4>
+                            <p class="card-text">[[item.description]]</p>
+                            <div class="text-left">
+                            </div>
+                            <div class="text-right">
+                                <span class="pull-left text-left">[[styleCost(item.cost)]]$</span>
+                                <button ng-click="addToCart(item.id)" class="btn-accent-flat text-right">Add to cart
+                                </button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

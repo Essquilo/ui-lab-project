@@ -25,3 +25,11 @@ var/
 # Django stuff:
 *.log
 local_settings.py
+
+# Databases and related data
+*sqlite
+*sqlite3
+media/
+
+# Generated css
+shop/static/css/

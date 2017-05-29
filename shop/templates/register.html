@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
     <div ng-app="app" ng-controller="RegisterController">
-    <nav class="navbar navbar-inverse bg-inverse navbar-static-top">
+    <nav class="navbar navbar-static-top">
       <a class="navbar-brand" href="#">Chemicals shop</a>
     </nav>
         <form role="form" class="form-horizontal col-sm-6 col-sm-offset-2">
@@ -27,7 +27,7 @@
                 <div class="form-group">
                     <label for="inputFirstName" class="col-md-4 control-label">First name</label>
                     <div class="col-md-8">
-                        <input type="tel" id="inputFirstName" class="form-control" ng-model="user.first_name"
+                        <input type="text" id="inputFirstName" class="form-control" ng-model="user.first_name"
                                placeholder="First name"/>
                     </div>
                 </div>

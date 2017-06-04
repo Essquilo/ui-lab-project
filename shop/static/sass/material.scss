@@ -27,25 +27,32 @@ $btn-secondary-color: transparent;
 
 @mixin button-flat-variant($color) {
   color: $color;
-  background-color: transparent;
+  background: none;
   border-color: transparent;
   &:focus,
   &.focus {
     color: $color;
+    background: none;
+    border-color: transparent;
   }
   &:hover {
     color: $color;
+    background: none;
+    border-color: transparent;
   }
   &:active,
   &.active,
   .open > &.dropdown-toggle {
     color: $color;
-
+    background: none;
+    border-color: transparent;
     &:hover,
     &:focus,
     &.focus {
       color: $color;
       outline: 0;
+      background: none;
+      border-color: transparent;
     }
   }
 }
@@ -154,7 +161,10 @@ h1, p {
 }
 
 .navbar-brand {
-  color: $control-text
+  color: $control-text;
+  &:hover, :focus {
+    color: $control-text;
+  }
 }
 
 /*box*/
@@ -243,6 +253,10 @@ input[type="password"] {
   transition: .2s ease-out;
   position: relative;
   z-index: auto;
+}
+
+.nav > li > a:hover, .nav > li > a:focus{
+  background-color: transparent;
 }
 
 .btn-accent {

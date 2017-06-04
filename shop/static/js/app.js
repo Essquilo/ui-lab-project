@@ -1,12 +1,47 @@
 /**
  * Created by milena on 04.04.17.
  */
-var app = angular.module('app', ['authentication', 'shop'], function ($httpProvider, $interpolateProvider) {
+var app = angular.module('app', ['ngCookies', 'ngRoute'], function ($httpProvider, $interpolateProvider) {
     $interpolateProvider.startSymbol('[[');
     $interpolateProvider.endSymbol(']]');
-    $httpProvider.defaults.xsrfCookieName = 'csrftoken';
-    $httpProvider.defaults.xsrfHeaderName = 'X-CSRFToken';
+
+}).run(function ($cookieStore, $rootScope, $http) {
+    if ($cookieStore.get('djangotoken')) {
+        $http.defaults.headers.common['Authorization'] = 'Token ' + $cookieStore.get('djangotoken');
+    }
 });
+app.config(['$routeProvider', '$locationProvider',
+    function ($routeProvider, $locationProvider) {
+        var onlyLoggedIn = function ($location, $cookieStore, $q) {
+            var deferred = $q.defer();
+            if ($cookieStore.get('djangotoken')) {
+                deferred.resolve();
+            } else {
+                deferred.reject();
+                $location.url('/login');
+            }
+            return deferred.promise;
+        };
+        $routeProvider.when('/', {
+            templateUrl: 'static/html/shop.html',
+            controller: 'ShopController',
+            resolve: {loggedIn: onlyLoggedIn}
+        }).when('/login', {
+            templateUrl: 'static/html/login.html',
+            controller: 'LoginController'
+        }).when('/register', {
+            templateUrl: 'static/html/register.html',
+            controller: 'RegisterController'
+        }).when('/cart', {
+            templateUrl: 'static/html/cart.html',
+            controller: 'CartController',
+            resolve: {loggedIn: onlyLoggedIn}
+        }).otherwise({
+            redirectTo: '/login'
+        });
+        $locationProvider.html5Mode(true);
+    }]);
+
 app.directive('costField', function ($parse) {
     return {
         restrict: 'A',

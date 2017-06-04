@@ -1,11 +1,11 @@
 /**
  * Created by Ivan Prymak on 3/31/2017.
  */
-angular.module("shop", ['ngCookies'])
-    .controller('ShopController', ['$scope', '$http', '$cookies', '$window',
+angular.module('app')
+    .controller('ShopController', ['$scope', '$http', '$window',
         function ($scope, $http, $cookies, $window) {
             $scope.name = 'Shop';
-            $scope.shop_items = [{'name': "Dummy", 'description': "Dummy description"}];
+            $scope.shop_items = [];
             $scope.filters = [{"name": "Filter", 'value': "", 'field': ""}];
             $scope.name_filter = function (index) {
                 $scope.filters[index].name = "Name";
@@ -71,14 +71,24 @@ angular.module("shop", ['ngCookies'])
                     $scope.shop_items = response.data
                 });
             });
-            $scope.toCart = function () {
-                $window.location.href = '/cart/';
-            };
         }])
-    .controller('CartController', ['$scope', '$http', '$cookies', '$window',
-        function ($scope, $http, $cookies, $window) {
-            $scope.cart_items = [{'name': "Dummy", 'description': "Dummy description"}];
+    .controller('CartController', ['$scope', '$http',
+        function ($scope, $http) {
+            $scope.cart_items = [];
             $http.get('/api/v1/cart/').then(function (response) {
                 $scope.cart_items = response.data
             });
+            $scope.removeFromCart = function (id) {
+                $http.post('/api/v1/cart/remove/', {'id': id})
+                    .then(function (response) {
+                        $scope.cart_items = _.reject($scope.cart_items, function (it) { return it.id === id})
+                    });
+            };
+             $scope.styleCost = function (value) {
+                var filler = '0';
+                if (value % 100 > 9) {
+                    filler = '';
+                }
+                return value / 100 + '.' + filler + value % 100;
+            };
         }]);

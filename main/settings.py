@@ -24,7 +24,7 @@ SECRET_KEY = 'il25h9-joy-be5=p8he#nfr&=79+z0a#vma2zdznq!av%cqdvd'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['10.0.2.2', '192.168.0.142', '127.0.0.1']
 
 # Application definition
 
@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'rest_framework.authtoken',
     'compressor',
     'shop'
 ]
@@ -86,7 +87,7 @@ COMPRESS_ENABLED = os.environ.get('COMPRESS_ENABLED', False)
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.TokenAuthentication',
     ),
     'DEFAULT_PARSER_CLASSES': (
         'rest_framework.parsers.JSONParser',

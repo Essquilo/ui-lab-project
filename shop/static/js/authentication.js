@@ -1,7 +1,7 @@
 /**
  * Created by Ivan Prymak on 3/31/2017.
  */
-angular.module("authentication", ['ngCookies'])
+angular.module('app')
     .controller('LoginController', ['$scope', '$http', '$cookieStore', '$window',
         function ($scope, $http, $cookieStore, $window) {
             $scope.name = 'Login';
@@ -11,6 +11,7 @@ angular.module("authentication", ['ngCookies'])
             $scope.login = function (user) {
                 $http.post('/api/v1/login/', user)
                     .then(function successCallback(response) {
+                        $cookieStore.put('djangotoken', response.data['token']);
                         $window.location.href = '/';
                     }, function errorCallback(response) {
                         $scope.incorrectPair = true;
